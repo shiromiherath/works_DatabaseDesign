@@ -1,0 +1,131 @@
+*/ CREATE DATABASE*/
+
+CREATE DATABASE WORKS;
+USE WORKS;
+
+/* CREATE TABLE*/
+CREATE TABLE EMPLOYEE(
+ ssn INT NOT NULL PRIMARY KEY,
+ fname VARCHAR(40) NOT NULL ,
+ lname VARCHAR(40) NULL,
+ address VARCHAR(40) NULL,
+ sex VARCHAR (1) NULL,
+ salary INT (10) NOT NULL,
+ DOB DATE NOT NULL
+ );
+ 
+ ALTER TABLE EMPLOYEE
+ ADD FOREIGN KEY(dno)
+ REFERENCES DEPARTMENT(ssn) 
+ ON DELETE CASCADE
+  ;
+  
+  CREATE TABLE DEPARTMENT(
+	dno INT(5) PRIMARY KEY NOT NULL,
+    dname VARCHAR (50) NOT NULL,
+    ssn INT,
+    FOREIGN KEY(ssn) REFERENCES EMPLOYEE (ssn) ON DELETE CASCADE
+    );
+  
+	CREATE TABLE DLOCATION(
+	dno INT(5),
+    dname VARCHAR(50),
+    PRIMARY KEY (dno , dname),
+    FOREIGN KEY(dno) REFERENCES DEPARTMENT(dno)
+    );
+    
+    
+    CREATE TABLE PROJECT(
+		pno INT(10) PRIMARY KEY NOT NULL,
+        plocation VARCHAR (50),
+        pname VARCHAR (50),
+        dno INT(5),
+        FOREIGN KEY (dno) REFERENCES DEPARTMENT(dno) ON DELETE CASCADE
+        );
+    
+  CREATE TABLE DEPENDENT (
+	ssn INT,
+    fname VARCHAR (50),
+    DOB DATE,
+    sex VARCHAR(1),
+    relationship VARCHAR (50),
+    PRIMARY KEY (ssn, fname),
+    FOREIGN KEY (ssn) REFERENCES EMPLOYEE (ssn) ON DELETE CASCADE
+    );
+    
+  CREATE TABLE WORKS_ON(
+		ssn INT ,
+        pno INT(10),
+        hours FLOAT (4,2),
+        PRIMARY KEY (ssn, pno),
+        FOREIGN KEY (ssn) REFERENCES EMPLOYEE(ssn) 
+        );
+    
+  /* insert data*/
+  
+  INSERT INTO EMPLOYEE(ssn,fname,lname,address,sex,salary,DOB)
+  VALUES 
+  (516-52-7385 , 'Ardeen', 'Marzella', '93363 Linden Circle', 'M', 12000,'1971-02-10'),
+  (289-67-8753, 'Adams ' , 'Shutt',' 633 Anzinger Hill','M', 15500, '1987-02-12'),
+  (562-39-0939, 'Alaine', 'Camplin', '0370 Boyd Drive', 'F', 11650, '1986-11-19'),
+  (894-67-8203,	'Gray','Klugman','044 Ronald Regan Court','M', 7500, '1979-12-01'),
+  (681-61-0904,	'Correna', 'Abbot',	'9555 Eastwood Avenue','F', 8750,'1974-02-05'),
+  (282-65-2885,'Neville','Mordey','6 Bunting Drive', 'M', 11650, '1986-04-05'),
+  (578-83-4150,	'Harland', 'Glasgow', '20856 Prairieview Alley', 'M', 12000, '1989-01-15'),
+  (778-54-1988,	'Willy','Chapiro','351 Buell Point', 'M', 8950,'1991-02-03'),
+  (251-77-0073,	'Ernie', 'Codrington', '80 Birchwood Lane', 'M', 25000, '1992-01-08'),
+  (612-02-8372,'Spike',	'Putland', '2 Hazelcrest Park','M', 12500,'1986-05-05');
+    
+    INSERT INTO DEPARTMENT(dno, dname, ssn)
+    VALUES
+		(0012,'sales', 612-02-8372),
+        (0013,'engineering', 894-67-8203),
+        (0014,'accounting', 251-77-0073),
+        (0015,'business', 282-65-2885),
+        (0016,'research', 778-54-1988),
+        (0017, 'production', 578-83-4150),
+        (0018,'service',562-39-0939);
+    
+    INSERT INTO DLOCATION(dno, dname)
+    VALUES 
+		(0014, 'accounting'),
+        (0015, 'business'),
+        (0017, 'production'),
+        (0016, 'reserarch'),
+        (0012, 'sales'),
+        (0013, 'engineering'),
+		(0018,'service');
+        
+        INSERT INTO PROJECT (pno,plocation,pname,dno)
+        VALUES
+        (1216, 'NewYork', 'Pacific Fly', 0012),
+         (1218, 'Boston','Boston Crab', 0017),
+         (1298, 'Boston', 'Human Barrier', 0016),
+          (1518, 'Hamilton', 'Sea Port', 0013),
+          (1648, 'New Jersy', 'Ice Hill', 0018);
+          
+    INSERT INTO WORKS_ON(ssn,pno,hours)
+    VALUES 
+        (562-39-0939, 1216, 2.5),
+        (289-67-8753, 1218, 3),
+        (578-83-4150, 1216, 4.5),
+		(282-65-2885, 1217, 2.5),
+		(612-02-8372, 1216, 5.5),
+         (251-77-0073, 1213, 6);
+		
+
+
+      
+       
+        
+        
+
+    
+    
+    
+    
+      
+    
+ 
+
+
