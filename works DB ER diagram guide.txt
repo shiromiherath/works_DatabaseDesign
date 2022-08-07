@@ -1,0 +1,8 @@
+The company database keeeps track of company's employee, department, and projects. 
+we store employee's name, SSN, address, salary, gender, date of birth, age.
+ An employee is assigned to one department. but may work on several projects which are not necessarily 
+ conroled by the same department.
+ A perticular employee manages the department. Each department has a unique name, number and several locationns.
+ The department controls number of projects each of which has a unique name, unique number and a single location.
+ we want to keeep track of the dependents of each employee for insuarance purpose. 
+ we keep each dependent's first name, birth date, and relationship to employee.
